@@ -54,6 +54,17 @@ Lectura:
 
 `cargo test`: 6/6. Ningún test se saltea.
 
+### Qué prueba y qué no el "fuga no detectada" en los 3 crates
+
+- **Prueba**: con estas dos clases de entrada (tag con el último byte mal contra tag con el primer byte mal), 200 000 muestras y esta máquina virtual, dudect no detectó diferencia de tiempo en la verificación HS256 de los 3 crates. El detector sí funciona: el bucle con salida temprana da |t| entre 128 y 644.
+- **No prueba**:
+  - Que la verificación sea de tiempo constante: dudect no puede probarlo.
+  - Nada sobre otras clases de entrada (errores de parseo, largos distintos, base64 o JSON inválidos) ni sobre otras CPU, compiladores o libc.
+  - Ni la explotabilidad remota ni su ausencia.
+  - Nada sobre el compromiso de la clave HMAC ni sobre el replay de un token válido, que quedan fuera de lo que mide este test.
+  - Además, el control positivo pedido (`==`) no mostró fuga.
+- **Las clases y los controles los diseñamos nosotros.**
+
 ### Nivel de verificación
 
 **B**: el mecanismo está medido, con controles positivos y negativos y dos corridas. No es B+ porque no hay una línea base que superar, y no es C porque no se probó un ataque remoto real.
@@ -82,6 +93,18 @@ A library that builds HS256 tokens with one tag byte altered and wraps each crat
 ### Measurement
 
 Pre-registered in `PREREGISTRO.md`. Threshold `|max t| > 4.5`. Two runs of 200000 samples per bench (table above): none of the three crates shows a leak; the early-exit loop control shows |t| 128–644; `subtle` stays below 2.2. **The requested `==` positive control did not leak**: slice `==` lowers to `memcmp`/`bcmp`, which showed no observable early exit at 32 bytes. That does not make `==` safe; the effective positive control is the explicit loop.
+
+### What "no leak detected" in the 3 crates proves and what it doesn't
+
+- **It proves** that, with these two input classes (last tag byte wrong vs first tag byte wrong), 200000 samples and this VM, dudect detected no timing difference in the HS256 verification of the 3 crates. The detector works: the early-exit loop gives |t| of 128–644.
+- **It doesn't prove** constant time.
+- **It doesn't cover**:
+  - other input classes (parse errors, other lengths, invalid base64 or JSON);
+  - other CPUs, compilers or libc;
+  - remote exploitability either way;
+  - HMAC key compromise or token replay.
+- **The requested `==` positive control did not leak.**
+- **The classes and controls are ours.**
 
 ### Verification level
 
