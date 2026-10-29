@@ -1,0 +1,25 @@
+[package]
+name = "ct-verify-jwt"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "Apache-2.0"
+description = "dudect timing tests (dudect-bencher) on HS256 JWT verification in three Rust crates, with positive and negative controls"
+publish = false
+
+[lib]
+name = "ct_verify_jwt"
+
+[dependencies]
+base64 = "0.22"
+dudect-bencher = "0.7"
+hmac = "0.12"
+jsonwebtoken = { version = "11.1", default-features = false, features = ["rust_crypto"] }
+jwt = "0.16"
+jwt-simple = { version = "0.15", default-features = false, features = ["pure-rust"] }
+serde_json = "1"
+sha2 = "0.10"
+subtle = "2.6"
+
+[profile.release]
+debug = false
