@@ -1,0 +1,10 @@
+bench,n,max_t,max_tau,leak_|t|>4.5
+crate_jsonwebtoken,11000,1.720,0.01628,false
+crate_jwt,198000,1.932,0.00434,false
+crate_jwt_simple,25000,1.642,0.01038,false
+ctrl_jwt_neg_subtle,85000,2.115,0.00728,false
+ctrl_jwt_pos_early_exit,133000,227.278,0.62266,true
+ctrl_jwt_pos_naive_eq,93000,2.415,0.00794,false
+ctrl_raw_neg_subtle,80000,-2.012,-0.00712,false
+ctrl_raw_pos_early_exit,198000,643.815,1.44756,true
+ctrl_raw_pos_naive_eq,199000,1.689,0.00378,false

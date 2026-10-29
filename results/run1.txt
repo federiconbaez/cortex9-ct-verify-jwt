@@ -1,0 +1,23 @@
+
+running 9 benches
+bench crate_jsonwebtoken      seeded with 0x0000000000001001
+bench crate_jsonwebtoken      ... : n == +0.026M, max t = +1.94207, max tau = +0.01211, (5/tau)^2 = 170470
+bench crate_jwt               seeded with 0x0000000000001003
+bench crate_jwt               ... : n == +0.171M, max t = +2.57444, max tau = +0.00622, (5/tau)^2 = 645605
+bench crate_jwt_simple        seeded with 0x0000000000001002
+bench crate_jwt_simple        ... : n == +0.200M, max t = +1.98794, max tau = +0.00445, (5/tau)^2 = 1265215
+bench ctrl_jwt_neg_subtle     seeded with 0x0000000000002003
+bench ctrl_jwt_neg_subtle     ... : n == +0.028M, max t = -2.12799, max tau = -0.01272, (5/tau)^2 = 154603
+bench ctrl_jwt_pos_early_exit seeded with 0x0000000000002002
+bench ctrl_jwt_pos_early_exit ... : n == +0.185M, max t = +127.88955, max tau = +0.29698, (5/tau)^2 = 283
+bench ctrl_jwt_pos_naive_eq   seeded with 0x0000000000002001
+bench ctrl_jwt_pos_naive_eq   ... : n == +0.048M, max t = +2.16346, max tau = +0.00989, (5/tau)^2 = 255707
+bench ctrl_raw_neg_subtle     seeded with 0x0000000000003003
+bench ctrl_raw_neg_subtle     ... : n == +0.197M, max t = -0.97304, max tau = -0.00219, (5/tau)^2 = 5209061
+bench ctrl_raw_pos_early_exit seeded with 0x0000000000003002
+bench ctrl_raw_pos_early_exit ... : n == +0.199M, max t = +464.45406, max tau = +1.04117, (5/tau)^2 = 23
+bench ctrl_raw_pos_naive_eq   seeded with 0x0000000000003001
+bench ctrl_raw_pos_naive_eq   ... : n == +0.200M, max t = +2.12810, max tau = +0.00476, (5/tau)^2 = 1102501
+
+dudect benches complete
+
